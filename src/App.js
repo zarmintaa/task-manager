@@ -64,6 +64,7 @@ function App(key, value) {
   const deleteTaskHandler = (todoId) => {
     const removedTodo = removeTasks(todoId);
     setEnteredTask(removedTodo);
+    localStorage.setItem("tasks", JSON.stringify(removedTodo));
   };
 
   const deleteAllTasks = () => {
