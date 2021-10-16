@@ -8,23 +8,23 @@ import HeadSection from "./components/HeadSection";
 import { checkBrowserSupportLocalstorage } from "./components/utils/Utils";
 
 function App(key, value) {
-  const [task, setTask] = useState([]);
+  const [enteredTask, setEnteredTask] = useState([]);
 
   useEffect(() => {
     const getData = localStorage.getItem("tasks");
     let data = JSON.parse(getData);
     if (data !== null) {
-      setTask(data);
+      setEnteredTask(data);
     }
     checkBrowserSupportLocalstorage();
   }, []);
 
   const filterTask = (todoId) => {
-    return task.filter((todo) => todo.id !== todoId);
+    return enteredTask.filter((todo) => todo.id !== todoId);
   };
 
   const removeTasks = (todoId) => {
-    return task.filter((task) => task.id !== todoId);
+    return enteredTask.filter((task) => task.id !== todoId);
   };
 
   const updateTasks = (prevTask, newTask) => {
@@ -33,12 +33,12 @@ function App(key, value) {
       allTask.push(tasks);
     });
     allTask.push(newTask);
-    setTask(allTask);
+    setEnteredTask(allTask);
     return allTask;
   };
 
   const addToFinishedTaskHandler = (todoId) => {
-    const findTask = task.filter((todo) => todo.id === todoId);
+    const findTask = enteredTask.filter((todo) => todo.id === todoId);
     findTask[0].isCompleted = true;
     const prevTasks = filterTask(todoId);
     return updateTasks(prevTasks, findTask[0]);
@@ -46,11 +46,11 @@ function App(key, value) {
 
   const updateTaskHandler = (todoId) => {
     const newTasks = addToFinishedTaskHandler(todoId);
-    setTask(newTasks);
+    setEnteredTask(newTasks);
   };
 
   const AddToUnfinishedTaskHandler = (todoId) => {
-    const findTodo = task.filter((todo) => todo.id === todoId);
+    const findTodo = enteredTask.filter((todo) => todo.id === todoId);
     findTodo[0].isCompleted = false;
     const prevTasks = filterTask(todoId);
     return updateTasks(prevTasks, findTodo[0]);
@@ -58,24 +58,28 @@ function App(key, value) {
 
   const updateToUnfinishedTask = (todoId) => {
     const newTasks = AddToUnfinishedTaskHandler(todoId);
-    setTask(newTasks);
+    setEnteredTask(newTasks);
   };
 
   const deleteTaskHandler = (todoId) => {
     const removedTodo = removeTasks(todoId);
-    setTask(removedTodo);
+    setEnteredTask(removedTodo);
   };
 
   const deleteAllTasks = () => {
     localStorage.clear();
-    setTask([]);
+    setEnteredTask([]);
   };
 
   const addTask = (task) => {
-    setTask((prevState) => {
+    setEnteredTask((prevState) => {
       return [task, ...prevState];
     });
-    localStorage.setItem("tasks", JSON.stringify([...task, task]));
+    if (enteredTask === []) {
+      localStorage.setItem("tasks", JSON.stringify([enteredTask, task]));
+    } else {
+      localStorage.setItem("tasks", JSON.stringify([...enteredTask, task]));
+    }
   };
 
   return (
@@ -88,7 +92,7 @@ function App(key, value) {
           deleteTask={deleteTaskHandler}
           updateTaskToUnfinished={updateToUnfinishedTask}
           updateTasks={updateTaskHandler}
-          todos={task}
+          todos={enteredTask}
         />
       </Wrapper>
     </Fragment>
