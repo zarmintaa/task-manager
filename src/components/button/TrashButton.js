@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import TaskContext from "../../store/task-context";
+
 const TrashButton = (props) => {
+  const ctx = useContext(TaskContext);
   const deleteTask = () => {
-    props.deleteTask(props.id);
+    ctx.onDeleteTask(props.id);
   };
   return <button onClick={deleteTask} className="trash-button" />;
 };

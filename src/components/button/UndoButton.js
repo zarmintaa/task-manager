@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import TaskContext from "../../store/task-context";
+
 const UndoButton = (props) => {
+  const ctx = useContext(TaskContext);
   const unfinishedTask = () => {
-    props.updateTaskToUnfinished(props.id);
+    ctx.onUpdateToUnfinishedTask(props.id);
   };
   return <button onClick={unfinishedTask} className="undo-button" />;
 };

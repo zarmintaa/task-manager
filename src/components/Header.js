@@ -1,16 +1,12 @@
 import { Fragment } from "react";
+import DeleteAll from "./button/DeleteAll";
 
-const Header = (props) => {
-  const deleteAllTasks = () => {
-    props.deleteTodo();
-  };
+const Header = () => {
   return (
     <Fragment>
       <header className="nav">
         <h1>Todo List</h1>
-        <button onClick={deleteAllTasks} className="delete-all">
-          Delete All Tasks
-        </button>
+        <DeleteAll>Delete All</DeleteAll>
       </header>
     </Fragment>
   );

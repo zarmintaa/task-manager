@@ -13,11 +13,8 @@ const FinishedTodo = (props) => {
               <h2>{item.task}</h2>
               <p>{item.timestamp}</p>
             </div>
-            <UndoButton
-              id={item.id}
-              updateTaskToUnfinished={props.updateTaskToUnfinished}
-            />
-            <TrashButton id={item.id} deleteTask={props.deleteTask} />
+            <UndoButton id={item.id} />
+            <TrashButton id={item.id} />
           </div>
         ))}
       </div>

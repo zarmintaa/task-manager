@@ -12,7 +12,7 @@ const UnfinishedTodo = (props) => {
               <h2>{item.task}</h2>
               <p>{item.timestamp}</p>
             </div>
-            <CheckButton id={item.id} updateTask={props.updateTask} />
+            <CheckButton id={item.id} />
           </div>
         ))}
       </div>

@@ -1,22 +1,21 @@
 import UnfinishedTodo from "./UnfinishedTodo";
 import FinishedTodo from "./FinishedTodo";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import TaskContext from "../../store/task-context";
 
 const Task = (props) => {
-  const todoUnfinishedHandler = props.todos.filter(
+  const ctx = useContext(TaskContext);
+  const todoUnfinishedHandler = ctx.tasks.filter(
     (todo) => todo.isCompleted === false
   );
 
-  const todoFinishedHandler = props.todos.filter(
+  const todoFinishedHandler = ctx.tasks.filter(
     (todo) => todo.isCompleted === true
   );
 
   return (
     <Fragment>
-      <UnfinishedTodo
-        updateTask={props.updateTasks}
-        todos={todoUnfinishedHandler}
-      />
+      <UnfinishedTodo todos={todoUnfinishedHandler} />
       <FinishedTodo
         deleteTask={props.deleteTask}
         updateTaskToUnfinished={props.updateTaskToUnfinished}

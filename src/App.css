@@ -176,10 +176,12 @@ input[type=date],
   background-color: #fd3a3a;
 }
 
+.delete-all:hover {
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2));
+}
+
 .delete-all:active {
   transform: scale(1.1);
-  font-weight: bold;
-
 }
 
 .undo-button:hover {
@@ -189,6 +191,15 @@ input[type=date],
 
 .check-button:focus, .trash-button {
   outline: none;
+}
+
+button .count {
+  padding: 1rem;
+  border: none;
+  border-radius: .5rem;
+  color: white;
+  background-color: #c4561a;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 1024px) {

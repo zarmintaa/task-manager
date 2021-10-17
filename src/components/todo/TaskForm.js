@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import TaskContext from "../../store/task-context";
 
 const TaskForm = (props) => {
   const [enteredTask, setEnteredTask] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+
+  const ctx = useContext(TaskContext);
 
   const taskInputHandler = (event) => {
     setEnteredTask(event.target.value);
@@ -21,7 +24,7 @@ const TaskForm = (props) => {
       isCompleted: false,
     };
 
-    props.addTask(taskData);
+    ctx.onAddTask(taskData);
     setEnteredTask("");
     setEnteredDate("");
   };
