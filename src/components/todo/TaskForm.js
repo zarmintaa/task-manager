@@ -1,5 +1,12 @@
 import { useContext, useState } from "react";
 import TaskContext from "../../store/task-context";
+import {
+  Form,
+  FormGroup,
+  Input,
+  InputSubmit,
+  Label,
+} from "../form/form-component";
 
 const TaskForm = (props) => {
   const [enteredTask, setEnteredTask] = useState("");
@@ -30,12 +37,10 @@ const TaskForm = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler} className="form" action="#" id="form">
-      <div className="form-group form-title">
-        <label className="task" htmlFor="title">
-          Masukkan hal yang akan dilakukan
-        </label>
-        <input
+    <Form onSubmit={submitHandler} action="#" id="form">
+      <FormGroup>
+        <Label htmlFor="title">Masukkan hal yang akan dilakukan</Label>
+        <Input
           onChange={taskInputHandler}
           type="text"
           id="title"
@@ -43,10 +48,10 @@ const TaskForm = (props) => {
           required
           value={enteredTask}
         />
-      </div>
-      <div className="form-group form-title">
-        <label htmlFor="date">Masukkan tanggal harus selesai</label>
-        <input
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="date">Masukkan tanggal harus selesai</Label>
+        <Input
           onChange={taskDateHandler}
           value={enteredDate}
           type="date"
@@ -54,14 +59,9 @@ const TaskForm = (props) => {
           name="date"
           required
         />
-      </div>
-      <input
-        type="submit"
-        value="Submit"
-        name="Submit"
-        className="btn-submit"
-      />
-    </form>
+      </FormGroup>
+      <InputSubmit type="submit" value="Submit" name="Submit" />
+    </Form>
   );
 };
 

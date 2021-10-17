@@ -1,23 +1,24 @@
 import Container from "../../layout/Container";
 import TrashButton from "../button/TrashButton";
 import UndoButton from "../button/UndoButton";
+import { Item, ListItem } from "../tasks/task-components";
 
 const FinishedTodo = (props) => {
   return (
     <Container>
-      <h2 className="container-header">Yang sudah dilakukan</h2>
-      <div className="list-item" id="completed-todos">
+      <h2>Yang sudah dilakukan</h2>
+      <ListItem>
         {props.todos.map((item) => (
-          <div key={item.id} className="item shadow">
-            <div className="inner">
+          <Item key={item.id}>
+            <div>
               <h2>{item.task}</h2>
               <p>{item.timestamp}</p>
             </div>
             <UndoButton id={item.id} />
             <TrashButton id={item.id} />
-          </div>
+          </Item>
         ))}
-      </div>
+      </ListItem>
     </Container>
   );
 };
